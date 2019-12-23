@@ -2,13 +2,15 @@ from constants import *
 import subprocess
 import json
 from web3 import Web3
+from eth_account import Account
+from web3.middleware import geth_poa_middleware
 from bit import PrivateKeyTestnet
 import bit
-from eth_account import Account
 
 # Establish connection with Ethereum node
 conn = Web3.HTTPProvider("http://127.0.0.1:8545")
 w3 = Web3(conn)
+w3.eth.setGasPriceStrategy(medium_gas_price_strategy)
 
 def derive_wallets(coin):
     '''
@@ -47,7 +49,7 @@ Coins = {
 Creating crypto privkeys dictionaries
 to store both BTC-Test and ETH private keys.
 '''
-btc_privkeys = {
+btc_test_privkeys = {
     "privkey_01": Coins['btc-test'][0]['privkey'],
     "privkey_02": Coins['btc-test'][1]['privkey'],
     "privkey_03": Coins['btc-test'][2]['privkey']
@@ -83,16 +85,16 @@ def priv_key_to_account(coin, priv_key):
 Creating crypto account dictionaries
 to store both BTC-Test and ETH accounts.
 '''
-btc_accounts = {
-    "account_01": priv_key_to_account(BTCTEST, btc_privkeys["privkey_01"]),
-    "account_02": priv_key_to_account(BTCTEST, btc_privkeys["privkey_02"]),
-    "account_03": priv_key_to_account(BTCTEST, btc_privkeys["privkey_03"])
+btc_test_accounts = {
+    "account_01": priv_key_to_account(BTCTEST, btc_privkeys["privkey_01"]), # Address: n11wDVwt4vnSyoQrevHatmWBhuuJ93R5pu
+    "account_02": priv_key_to_account(BTCTEST, btc_privkeys["privkey_02"]), # Address: mvLRqYEEYcaEdJSYi3K3ava2pMpB6oZzEy
+    "account_03": priv_key_to_account(BTCTEST, btc_privkeys["privkey_03"])  # Address: mxMBkwMbjiu25YDWmhHcBo2GFCzbDjZwG3
 }
 
 eth_accounts = {
-    "account_01": priv_key_to_account(ETH, eth_privkeys["privkey_01"]),
-    "account_02": priv_key_to_account(ETH, eth_privkeys["privkey_02"]),
-    "account_03": priv_key_to_account(ETH, eth_privkeys["privkey_03"])
+    "account_01": priv_key_to_account(ETH, eth_privkeys["privkey_01"]), # Address: 0xDfbc3adf2c48142a0b27725323527Da6E1E2890f
+    "account_02": priv_key_to_account(ETH, eth_privkeys["privkey_02"]), # Address: 0x4F95B1f3945e249627f6d3A608E731Aa8F748803
+    "account_03": priv_key_to_account(ETH, eth_privkeys["privkey_03"])  # Address: 0x6a21Be8c3B3cCd7C06F0F2e2f55761E36D9A49C9
 }
 
 def create_tx(coin, account, to, amount):
@@ -153,8 +155,8 @@ def send_tx(coin, account, to, amount):
         signed = account.sign_transaction(raw_tx)
         result = w3.eth.sendRawTransaction(signed.rawTransaction)
         return(result.hex())
-
-# Following code to execute the
-# transaction on BTC Testnet
-
-print(send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003))
+'''
+Following code to execute the
+transaction on BTC Testnet
+'''
+# print(send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003))
