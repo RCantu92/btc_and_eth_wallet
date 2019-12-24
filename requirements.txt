@@ -1,0 +1,25 @@
+The installation of the pip dependencies "bit" and "web3" are as follows:
+
+($ indicates the command is to be entered in the command line. Terminal on Mac, Git Bash on Windows)
+
+$ pip install bit
+
+That command will install bit to be used with python. Use the following command to confirm installation, as well as finding out which version of bit was installed:
+
+$ pip list | grep bit
+
+To install web3, the command is as follows:
+
+$ pip install web3
+
+Similar to the bit library, that command will install web3 to be used with python. To confirm the installation, as well as checking the installed version, enter as follows:
+
+$ pip list | grep web3
+
+
+To clone and install the hd-wallet derive, enter the following:
+
+$ git clone https://github.com/dan-da/hd-wallet-derive
+$ cd hd-wallet-derive
+$ php -r "readfile('https://getcomposer.org/installer');" | php
+$ php composer.phar install
