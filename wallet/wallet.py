@@ -1,11 +1,16 @@
 from constants import *
 import subprocess
 import json
-from web3 import Web3
+from web3 import Web3, middleware
+from dotenv import load_dotenv
 from eth_account import Account
 from web3.middleware import geth_poa_middleware
+from web3.gas_strategies.time_based import medium_gas_price_strategy
 from bit import PrivateKeyTestnet
 import bit
+
+load_dotenv()
+
 
 # Establish connection with Ethereum node
 conn = Web3.HTTPProvider("http://127.0.0.1:8545")
@@ -86,9 +91,9 @@ Creating crypto account dictionaries
 to store both BTC-Test and ETH accounts.
 '''
 btc_test_accounts = {
-    "account_01": priv_key_to_account(BTCTEST, btc_privkeys["privkey_01"]), # Address: n11wDVwt4vnSyoQrevHatmWBhuuJ93R5pu
-    "account_02": priv_key_to_account(BTCTEST, btc_privkeys["privkey_02"]), # Address: mvLRqYEEYcaEdJSYi3K3ava2pMpB6oZzEy
-    "account_03": priv_key_to_account(BTCTEST, btc_privkeys["privkey_03"])  # Address: mxMBkwMbjiu25YDWmhHcBo2GFCzbDjZwG3
+    "account_01": priv_key_to_account(BTCTEST, btc_test_privkeys["privkey_01"]), # Address: n11wDVwt4vnSyoQrevHatmWBhuuJ93R5pu
+    "account_02": priv_key_to_account(BTCTEST, btc_test_privkeys["privkey_02"]), # Address: mvLRqYEEYcaEdJSYi3K3ava2pMpB6oZzEy
+    "account_03": priv_key_to_account(BTCTEST, btc_test_privkeys["privkey_03"])  # Address: mxMBkwMbjiu25YDWmhHcBo2GFCzbDjZwG3
 }
 
 eth_accounts = {
@@ -114,7 +119,9 @@ def create_tx(coin, account, to, amount):
         This will create the transaction
         between accounts on ETH.
         '''
-        gas_estimate = w3.eth.estimateGas(
+        # Below because generateGasPrice might be correct
+        # gas_estimate = w3.eth.estimateGas(
+        gas_estimate = w3.eth.generateGasPrice(
             {
                 "from": account.address,
                 "to": to,
@@ -160,3 +167,9 @@ Following code to execute the
 transaction on BTC Testnet
 '''
 # print(send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003))
+
+'''
+Following code to execute the
+transaction on ETH Testnet
+'''
+# print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 0.0002))

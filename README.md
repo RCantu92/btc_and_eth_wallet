@@ -6,7 +6,9 @@
 
 What is it? What does it do?:
 
-RivCo is now providing a cryptocurrency wallet service. What RivCo's wallet does is it generates private keys upon command. After generating private keys, the keys are then used to derive accounts with addresses, with which users are then able to transact with.
+RivCo is now providing a cryptocurrency wallet service. What RivCo's wallet does is it generates accounts from private keys, with which users are then able to transact with upon command. 
+
+(As it stands, there have been three private keys for both BTC-testnet and ETH-testnet that have been derived. To derive more than three in the future, the "--numderive=" flag could be filled in with a number greater than 3.)
 
 Below is an image of a valie BTC-testnet transaction.
 
@@ -16,9 +18,17 @@ The code to run the transaction above is as follows:
 
 > send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003)
 
+(The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
+
 Below is an image of a valid ETH-testnet transaction.
 
 ![](./screenshots/eth-testnet-tx-confirmation.png)
+
+The code to run the transaction above is as follows:
+
+> send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 0.0002)
+
+(The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 
 What is it built with?:
 
