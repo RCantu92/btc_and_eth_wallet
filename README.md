@@ -26,7 +26,7 @@ Below is an image of a valid ETH-testnet transaction.
 
 The code to run the transaction above is as follows:
 
-> send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 0.0002)
+> send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000s)
 
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 

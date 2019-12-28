@@ -1,7 +1,8 @@
 from constants import *
 import subprocess
 import json
-from web3 import Web3, middleware
+from web3 import Web3
+# from web3 import Web3, middleware
 from dotenv import load_dotenv
 from eth_account import Account
 from web3.middleware import geth_poa_middleware
@@ -13,8 +14,12 @@ load_dotenv()
 
 
 # Establish connection with Ethereum node
-conn = Web3.HTTPProvider("http://127.0.0.1:8545")
-w3 = Web3(conn)
+url = "HTTP://127.0.0.1:8545"
+w3 = Web3(Web3.HTTPProvider(url))
+
+# To confirm connection to Ethereum blockchain
+# print(w3.isConnected())
+
 w3.eth.setGasPriceStrategy(medium_gas_price_strategy)
 
 def derive_wallets(coin):
@@ -119,9 +124,7 @@ def create_tx(coin, account, to, amount):
         This will create the transaction
         between accounts on ETH.
         '''
-        # Below because generateGasPrice might be correct
-        # gas_estimate = w3.eth.estimateGas(
-        gas_estimate = w3.eth.generateGasPrice(
+        gas_estimate = w3.eth.estimateGas(
             {
                 "from": account.address,
                 "to": to,
@@ -135,7 +138,7 @@ def create_tx(coin, account, to, amount):
             "gas": gas_estimate,
             "gas_price": w3.eth.gasPrice,
             "nonce":w3.eth.getTransactionCount(account.address),
-            "chain_id": web3.eth.chainId
+            "chain_id": w3.eth.chainId
         })
 
 def send_tx(coin, account, to, amount):
@@ -172,4 +175,4 @@ transaction on BTC Testnet
 Following code to execute the
 transaction on ETH Testnet
 '''
-# print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 0.0002))
+# print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000))
