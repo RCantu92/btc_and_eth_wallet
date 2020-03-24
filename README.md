@@ -1,14 +1,26 @@
-# RivCo Wallet: Wallet for BTC-Testnet & ETH-Testnet:
+# Local Wallet Generator for BTC-Testnet & ETH-Testnet:
 
-![](https://coindoo.com/wp-content/uploads/2019/09/secure_cryptocurrency_wallet.png)
+What this project does is that it generates accounts from private keys, with which users are then able to transact with upon command.
 
-## Description
+## Getting Started
 
-What is it? What does it do?:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-RivCo is now providing a cryptocurrency wallet service. What RivCo's wallet does is it generates accounts from private keys, with which users are then able to transact with upon command. 
+### Prerequisites
 
-(As it stands, there have been three private keys for both BTC-testnet and ETH-testnet that have been derived. To derive more than three in the future, the "--numderive=" flag could be filled in with a number greater than 3.)
+### Installing
+
+Getting a local copy of hd-wallet-derive on your machine.
+
+```
+Go to https://github.com/dan-da/hd-wallet-derive and clone the repository. 
+```
+
+## Running the tests
+
+You simply run the .py file from the command line using python.
+
+### Break down into end to end tests
 
 Below is an image of a valie BTC-testnet transaction.
 
@@ -16,7 +28,9 @@ Below is an image of a valie BTC-testnet transaction.
 
 The code to run the transaction above is as follows:
 
-> send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003)
+```
+send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003)
+```
 
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 
@@ -26,14 +40,19 @@ Below is an image of a valid ETH-testnet transaction.
 
 The code to run the transaction above is as follows:
 
-> send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000s)
+```
+send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000s)
+```
 
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 
-What is it built with?:
+## Built With
 
-What happens behind the scenes to help RivCo's wallet function is as follows: First, with python, the subprocess library is used to run hd-wallet-derive to derive private keys for both BTC and ETH testnets. Once the private keys have been generated, they are used to create accounts for the BTC and ETH testnets using the bit and web3 libraries for python.
+* [python](https://www.python.org/) - Programming language.
+* [hd-wallet-derive](https://github.com/dan-da/hd-wallet-derive) - CLI tool that derives bip32 addresses and private keys.
+* [Bit](https://ofek.dev/bit/) - Python Bitcoin library.
+* [web3.py](https://github.com/ethereum/web3.py) - Python Ethereum library.
 
-How do you use it?:
+## Authors
 
-You simply run the .py file from the command line using python.
+* **Roberto Cantu**  - [GitHub](https://github.com/RCantu92)
