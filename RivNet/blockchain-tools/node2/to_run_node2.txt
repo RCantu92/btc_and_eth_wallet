@@ -1,3 +1,0 @@
-Copy and Paste the following to run node2:
-
-./geth --networkid 223 --datadir node2 --syncmode "full" --unlock "0x4F95B1f3945e249627f6d3A608E731Aa8F748803" --allow-insecure-unlock --port 30304 --bootnodes "enode://eccbef7d597e4c109c49ebadaf2cd2e0d2c33c481da6f9f4eb60fdf78d13a1132fc6a226397c6a5e10f9cd600dd6e3fbff816ab46d7fa86d37580c3e2400235c@127.0.0.1:30303" --mine --minerthreads 1

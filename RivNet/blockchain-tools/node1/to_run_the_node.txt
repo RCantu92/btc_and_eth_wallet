@@ -1,3 +1,0 @@
-Copy and Paste to run node1:
-
-./geth --networkid 223 --datadir node1 --syncmode "full" --rpc --unlock "0xDfbc3adf2c48142a0b27725323527Da6E1E2890f" --allow-insecure-unlock --mine --minerthreads 1

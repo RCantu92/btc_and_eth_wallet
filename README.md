@@ -1,24 +1,55 @@
-# Local Wallet Generator for BTC-Testnet & ETH-Testnet:
+# Local Wallet Generator for BTC-Testnet & ETH-Testnet
 
-What this project does is that it generates accounts from private keys, with which users are then able to transact with upon command.
+This project generates accounts for both Bitcoin and Ethereum from private keys, that can then be used to transact with.
 
-## Getting Started
+## Prerequisites
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-### Installing
-
-Getting a local copy of hd-wallet-derive on your machine.
+The installation of the pip dependencies "bit" and "web3" are as follows:
 
 ```
-Go to https://github.com/dan-da/hd-wallet-derive and clone the repository. 
+$ pip install bit
+```
+
+That command will install bit to be used with python. Use the following command to confirm installation, as well as finding out which version of bit was installed:
+
+```
+$ pip list | grep bit
+```
+
+To install web3, the command is as follows:
+
+```
+$ pip install web3
+```
+
+Similar to the bit library, that command will install web3 to be used with python. To confirm the installation, as well as checking the installed version, enter as follows:
+
+```
+$ pip list | grep web3
+```
+
+To clone and install the hd-wallet derive, enter the following:
+
+```
+$ git clone https://github.com/dan-da/hd-wallet-derive
+$ cd hd-wallet-derive
+$ php -r "readfile('https://getcomposer.org/installer');" | php
+$ php composer.phar install
+```
+
+Lastly, you need to create a symlink called "derive" for the hd-wallet-derive/hd-wallet-derive.php script into the top level project directory like so: 
+
+```
+$ ln -s hd-wallet-derive/hd-wallet-derive.php derive
 ```
 
 ## Running the tests
 
-You simply run the .py file from the command line using python.
+You simply run the wallet/wallet.py file from the command line using python.
+
+```
+$ python wallet.py
+```
 
 ### Break down into end to end tests
 
@@ -52,6 +83,8 @@ send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 20000000000
 * [hd-wallet-derive](https://github.com/dan-da/hd-wallet-derive) - CLI tool that derives bip32 addresses and private keys.
 * [Bit](https://ofek.dev/bit/) - Python Bitcoin library.
 * [web3.py](https://github.com/ethereum/web3.py) - Python Ethereum library.
+* [Infura](https://infura.io/) - API used to access the Ethereum and IPFS networks.
+* [subprocess](https://docs.python.org/3/library/subprocess.html) - Module that allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes.
 
 ## Authors
 
