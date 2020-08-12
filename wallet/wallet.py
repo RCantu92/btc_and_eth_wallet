@@ -14,7 +14,9 @@ load_dotenv()
 
 
 # Establish connection with Ethereum node
-url = "HTTP://127.0.0.1:8545"
+# url below is to connect to local Proof of Authority
+# url = "HTTP://127.0.0.1:8545"
+url = "https://ropsten.infura.io/v3/491ffd9a994941089a5e348aba1bb061"
 w3 = Web3(Web3.HTTPProvider(url))
 
 # To confirm connection to Ethereum blockchain
@@ -73,8 +75,8 @@ eth_privkeys = {
 
 def priv_key_to_account(coin, priv_key):
     '''
-    Function to create accounts from private keys
-    for either BTC-Testnet or ETH.
+    #Function to create accounts from private keys
+    #for either BTC-Testnet or ETH.
     '''
     if (coin == BTCTEST):
         '''
@@ -85,8 +87,8 @@ def priv_key_to_account(coin, priv_key):
         return(btctest_account)
     elif (coin == ETH):
         '''
-        This will convert the ETH privkey string to
-        an account object that web3.py can use to transact.
+        #This will convert the ETH privkey string to
+        #an account object that web3.py can use to transact.
         '''
         eth_account = Account.privateKeyToAccount(priv_key)
         return(eth_account)
@@ -121,24 +123,24 @@ def create_tx(coin, account, to, amount):
         return(btc_tx)
     elif (coin == ETH):
         '''
-        This will create the transaction
-        between accounts on ETH.
+        #This will create the transaction
+        #between accounts on ETH.
         '''
         gas_estimate = w3.eth.estimateGas(
             {
                 "from": account.address,
-                "to": to,
+                "to": to.address,
                 "value": amount
             }
         )
         return({
-            "to": to,
+            "to": to.address,
             "from": account.address,
             "value": amount,
             "gas": gas_estimate,
-            "gas_price": w3.eth.gasPrice,
-            "nonce":w3.eth.getTransactionCount(account.address),
-            "chain_id": w3.eth.chainId
+            "gasPrice": w3.eth.gasPrice,
+            "nonce":w3.eth.getTransactionCount(account.address)
+            # "chain_id": w3.eth.chainId
         })
 
 def send_tx(coin, account, to, amount):
@@ -158,21 +160,22 @@ def send_tx(coin, account, to, amount):
         return(result)
     elif (coin == ETH):
         '''
-        This will send the transaction
-        between accounts on ETH.
+        #This will send the transaction
+        #between accounts on ETH.
         '''
         raw_tx = create_tx(coin, account, to, amount)
         signed = account.sign_transaction(raw_tx)
         result = w3.eth.sendRawTransaction(signed.rawTransaction)
         return(result.hex())
+
 '''
 Following code to execute the
 transaction on BTC Testnet
 '''
-# print(send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003))
+# print(send_tx(BTCTEST, btc_test_accounts["account_01"], btc_test_accounts["account_02"], 0.00000003))
 
 '''
 Following code to execute the
 transaction on ETH Testnet
 '''
-# print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000))
+print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000))
