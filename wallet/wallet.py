@@ -5,7 +5,8 @@ from web3 import Web3
 # from web3 import Web3, middleware
 from dotenv import load_dotenv
 from eth_account import Account
-from web3.middleware import geth_poa_middleware
+# middleware required to connect to a Proof of Authority chain
+# from web3.middleware import geth_poa_middleware
 from web3.gas_strategies.time_based import medium_gas_price_strategy
 from bit import PrivateKeyTestnet
 import bit
@@ -14,15 +15,16 @@ load_dotenv()
 
 
 # Establish connection with Ethereum node
-# url below is to connect to local Proof of Authority
+# url below is to connect to local Proof of Authority Ethereum blockchain
 # url = "HTTP://127.0.0.1:8545"
 url = "https://ropsten.infura.io/v3/491ffd9a994941089a5e348aba1bb061"
 w3 = Web3(Web3.HTTPProvider(url))
 
-# To confirm connection to Ethereum blockchain
+# Used to confirm connection to Ethereum blockchain
 # print(w3.isConnected())
 
-w3.eth.setGasPriceStrategy(medium_gas_price_strategy)
+# Also need if using Proof of Authority chain
+# w3.eth.setGasPriceStrategy(medium_gas_price_strategy)
 
 def derive_wallets(coin):
     '''
@@ -75,8 +77,8 @@ eth_privkeys = {
 
 def priv_key_to_account(coin, priv_key):
     '''
-    #Function to create accounts from private keys
-    #for either BTC-Testnet or ETH.
+    Function to create accounts from private keys
+    for either BTC-Testnet or ETH.
     '''
     if (coin == BTCTEST):
         '''
@@ -87,8 +89,8 @@ def priv_key_to_account(coin, priv_key):
         return(btctest_account)
     elif (coin == ETH):
         '''
-        #This will convert the ETH privkey string to
-        #an account object that web3.py can use to transact.
+        This will convert the ETH privkey string to
+        an account object that web3.py can use to transact.
         '''
         eth_account = Account.privateKeyToAccount(priv_key)
         return(eth_account)
@@ -123,8 +125,8 @@ def create_tx(coin, account, to, amount):
         return(btc_tx)
     elif (coin == ETH):
         '''
-        #This will create the transaction
-        #between accounts on ETH.
+        This will create the transaction
+        between accounts on ETH.
         '''
         gas_estimate = w3.eth.estimateGas(
             {
@@ -160,8 +162,8 @@ def send_tx(coin, account, to, amount):
         return(result)
     elif (coin == ETH):
         '''
-        #This will send the transaction
-        #between accounts on ETH.
+        This will send the transaction
+        between accounts on ETH.
         '''
         raw_tx = create_tx(coin, account, to, amount)
         signed = account.sign_transaction(raw_tx)
