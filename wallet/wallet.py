@@ -10,7 +10,6 @@ from eth_account import Account
 from web3.gas_strategies.time_based import medium_gas_price_strategy
 from bit import PrivateKeyTestnet
 import bit
-import pprint
 
 load_dotenv()
 
@@ -175,10 +174,10 @@ def send_tx(coin, account, to, amount):
 Following code to execute the
 transaction on BTC Testnet
 '''
-pprint.pprint(send_tx(BTCTEST, btc_test_accounts["account_01"], btc_test_accounts["account_02"], 0.00000003))
+print(send_tx(BTCTEST, btc_test_accounts["account_01"], btc_test_accounts["account_02"], 0.00000003))
 
 '''
 Following code to execute the
 transaction on ETH Testnet
 '''
-# print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000))
+print(send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000))
