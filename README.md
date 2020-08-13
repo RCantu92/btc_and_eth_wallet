@@ -55,7 +55,7 @@ $ python wallet.py
 
 Below is an image of a valie BTC-testnet transaction.
 
-![](./screenshots/btc-testnet-tx-confirmation.png)
+![](./transaction_images/btc-testnet-tx-confirmation.png)
 
 The code to run the transaction above is as follows:
 
@@ -66,16 +66,29 @@ send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 
 Below is an image of a valid ETH-testnet transaction.
+It can be founds on Etherescan [here](https://ropsten.etherscan.io/tx/0x822e4baffaf6281760272eb8880ced2c449a800f6110a6714d1c0ecbad8e0fa8).
 
-![](./screenshots/eth-testnet-tx-confirmation.png)
+![](./transaction_images/eth-testnet-tx-confirmation.png)
 
 The code to run the transaction above is as follows:
 
 ```
-send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000s)
+send_tx(ETH, eth_accounts["account_01"], eth_accounts["account_02"], 200000000000000)
 ```
 
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
+
+You would run
+
+```
+$ python wallet.py
+```
+
+as shown here:
+
+![](./transaction_images/eth-testnet-tx-call.png)
+
+The output is the transaction hash that can then be searched on Etherscan for the Ropsten testnet, as previously demonstrated.
 
 ## Built With
 
