@@ -53,7 +53,7 @@ $ python wallet.py
 
 ### Break down into end to end tests
 
-Below is an image of a valie BTC-testnet transaction.
+Below is an image of a valie BTC-testnet transaction. It can be found on Blockchain [here](https://www.blockchain.com/btc-testnet/tx/e48b3871afed3e0fcdd6118cb9fe2a9b02236affb91c7bf1dbe1ef5075561cd7).
 
 ![](./transaction_images/btc-testnet-tx-confirmation.png)
 
@@ -65,8 +65,20 @@ send_tx(BTCTEST, btc_accounts["account_01"], btc_accounts["account_02"], 0.00003
 
 (The code in that above instance could be altered to have transactions occur with different accounts. for example "account_02" and "account_03".)
 
+You would run
+
+```
+$ python wallet.py
+```
+
+as shown here:
+
+![](./transaction_images/btc-testnet-tx-call.png)
+
+The output is the transaction hash that can then be searched on Blockchain for the Bitcoin testnet, as previously demonstrated.
+
 Below is an image of a valid ETH-testnet transaction.
-It can be founds on Etherescan [here](https://ropsten.etherscan.io/tx/0x822e4baffaf6281760272eb8880ced2c449a800f6110a6714d1c0ecbad8e0fa8).
+It can be found on Etherescan [here](https://ropsten.etherscan.io/tx/0x822e4baffaf6281760272eb8880ced2c449a800f6110a6714d1c0ecbad8e0fa8).
 
 ![](./transaction_images/eth-testnet-tx-confirmation.png)
 
