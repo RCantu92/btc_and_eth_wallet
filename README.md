@@ -117,6 +117,7 @@ The output is the transaction hash that can then be searched on Etherscan for th
 ## Built With
 
 * [python](https://www.python.org/) - Programming language.
+* [python-dotenv](https://pypi.org/project/python-dotenv/) - Reads the key-value pair from .env file and adds them to environment variable.
 * [hd-wallet-derive](https://github.com/dan-da/hd-wallet-derive) - CLI tool that derives bip32 addresses and private keys.
 * [Bit](https://ofek.dev/bit/) - Python Bitcoin library.
 * [web3.py](https://github.com/ethereum/web3.py) - Python Ethereum library.

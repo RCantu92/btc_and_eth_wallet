@@ -1,4 +1,4 @@
-from constants import *
+import os
 import subprocess
 import json
 from web3 import Web3
@@ -12,6 +12,11 @@ from bit import PrivateKeyTestnet
 import bit
 
 load_dotenv()
+
+BTC = "btc"
+ETH = "eth"
+BTCTEST = "btc-test"
+mnemonic = os.getenv("MNEMONIC", MNEMONIC)
 
 
 # Establish connection with Ethereum node
